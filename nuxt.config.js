@@ -34,7 +34,7 @@ export default {
   */
   plugins: [
     '@/plugins/bootstrap',
-    {src:'@/plugins/stripe', ssr:false}
+    {src: '@/plugins/stripe', ssr: false}
   ],
   /*
   ** Nuxt.js dev-modules
@@ -50,9 +50,9 @@ export default {
     '@nuxtjs/axios',
     'nuxt-stripe-module'
   ],
-  stripe:{
-    version:'v3',
-    publishableKey:"pk_test_TGFHNcnqSJVQLaJzCtIkwKd8"
+  stripe: {
+    version: 'v3',
+    publishableKey: process.env.STRIPE_PUBLIC
   },
   /*
   ** Axios module configuration
@@ -62,10 +62,10 @@ export default {
   /*
   ** Environment Variables
   */
-  env:{
-    stripe: {public: "pk_test_TGFHNcnqSJVQLaJzCtIkwKd8"},
-    server: 'http://localhost:3300'
-    },
+  env: {
+    stripe: process.env.STRIPE_PUBLIC || "pk_test_TGFHNcnqSJVQLaJzCtIkwKd8",
+    server: process.env.SERVER_URL||'http://localhost:3300'
+  },
   /*
   ** Build configuration
   */
