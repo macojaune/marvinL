@@ -40,6 +40,7 @@
                 show: false,
                 error: '',
                 loading: true,
+                stripe: {},
                 intent: {},
                 amount: this.$route.params.amount || 1000,
                 name: this.$route.params.name,
@@ -71,11 +72,10 @@
             }
         },
         async mounted() {
-            console.log(this.$route.params)
             await this.initPayment()
             this.loading = false
-
-            const elements = this.$stripe.elements()
+                                  this.stripe = this.$stripe.import()
+            const elements = this.stripe.elements()
             this.card = elements.create('card', {style: this.style})
             this.card.mount('#card')
             this.card.addEventListener('change', ({error}) => {
@@ -105,7 +105,7 @@
             async doPay() {
                 this.loading = true
 
-                const {paymentIntent, error} = await this.$stripe.confirmCardPayment(this.intent.client_secret, {payment_method: {card: this.card}})
+                const {paymentIntent, error} = await this.stripe.confirmCardPayment(this.intent.client_secret, {payment_method: {card: this.card}})
                 this.loading = false
 
                 if (error) {

@@ -1,10 +1,11 @@
 <template lang="pug">
-  nuxt-child
+  .home
+
 </template>
 
 <script>
     export default {
-        name: "index.vue"
+        name: "home"
     }
 </script>
 

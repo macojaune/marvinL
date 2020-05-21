@@ -11,7 +11,7 @@ export default {
       {hid: 'description', name: 'description', content: process.env.npm_package_description || ''}
     ],
     link: [
-      {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
+      {rel: 'icon', type: 'image/x-icon', href: '/favicon.png'}
     ],
     script: [
       // {id:'stripe-js', src:'https://js.stripe.com/v3/', async:true}
@@ -34,7 +34,6 @@ export default {
   */
   plugins: [
     '@/plugins/bootstrap',
-    {src: '@/plugins/stripe', ssr: false}
   ],
   /*
   ** Nuxt.js dev-modules
@@ -52,7 +51,7 @@ export default {
   ],
   stripe: {
     version: 'v3',
-    publishableKey: process.env.STRIPE_PUBLIC
+    publishableKey: process.env.STRIPE_PUBLIC || "pk_live_Mzvg43GsNYsVEJSzXckWYTdk" //"pk_test_TGFHNcnqSJVQLaJzCtIkwKd8",
   },
   /*
   ** Axios module configuration
@@ -63,8 +62,7 @@ export default {
   ** Environment Variables
   */
   env: {
-    stripe: process.env.STRIPE_PUBLIC || "pk_test_TGFHNcnqSJVQLaJzCtIkwKd8",
-    server: process.env.SERVER_URL||'http://localhost:3300'
+    server: process.env.SERVER_URL || 'https://api.marvinl.com' //'http://localhost:3300',    //'
   },
   /*
   ** Build configuration
