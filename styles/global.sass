@@ -1,0 +1,19 @@
+@use 'colors' as c
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Major+Mono+Display&display=swap')
+
+html,
+body
+  padding: 0
+  margin: 0
+  line-height: 1.1
+  letter-spacing: 0
+  background: c.$charcoal
+  color: c.$washed
+
+
+a
+  color: inherit
+  text-decoration: none
+
+.drop-shadow-dark-cyan
+  filter: drop-shadow(-8px 0px 13px transparentize(c.$dark-cyan, 0.3)) drop-shadow(0 8px 5px transparentize(c.$dark-cyan, 0.8))
