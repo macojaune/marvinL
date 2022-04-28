@@ -32,7 +32,7 @@ export default function Home() {
             </small>
           </h1>
 
-          <p className="my-9 text-justify text-lg italic leading-snug md:text-left md:text-xl md:leading-tight">
+          <p className="my-6 text-justify text-lg italic leading-snug md:text-left md:text-xl md:leading-tight">
             Si les fondations sont vos idées, <br className="md:hidden" /> je
             m’occupe des murs qui vont mettre{' '}
             <TextSlider
@@ -42,8 +42,8 @@ export default function Home() {
             à l’abri.
           </p>
         </div>
-        <div className="flex flex-col px-5  md:my-32 md:flex-row md:py-32">
-          <div className="md:w-1/5 md:p-20">
+        <div className="flex flex-col px-5 md:flex-row md:py-4">
+          <div className="md:w-1/5 md:p-5">
             <Image
               src={builderImg}
               alt=""
@@ -77,7 +77,7 @@ export default function Home() {
                 ce terme.
               </p>
             </div>
-            <p className="my-5 text-right text-2xl font-semibold tracking-tighter text-dark-cyan md:text-8xl md:tracking-tight">
+            <p className="my-5 text-right text-2xl font-semibold tracking-tighter text-dark-cyan md:text-4xl md:tracking-tight">
               J'aime créer, <br />
               <span className="font-normal">résoudre les problèmes,</span>
               <br /> tester des idées{' '}
