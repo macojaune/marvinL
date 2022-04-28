@@ -18,7 +18,7 @@ export default function Home() {
       </Head>
 
       <main className="m-h-screen m-w-full pt-12 md:px-0">
-        <div className="flex flex-col items-center justify-center px-5">
+      <div className="flex flex-col items-center justify-center px-5">
           <h1 className="text-left">
             <span className="font-mono text-base leading-tight">
               SALUT, JE SUIS
@@ -32,7 +32,7 @@ export default function Home() {
             </small>
           </h1>
 
-          <p className="my-3 text-justify text-lg italic leading-snug md:text-left md:text-xl md:leading-tight">
+          <p className="my-9 text-justify text-lg italic leading-snug md:text-left md:text-xl md:leading-tight">
             Si les fondations sont vos idées, <br className="md:hidden" /> je
             m’occupe des murs qui vont mettre{' '}
             <TextSlider
@@ -42,21 +42,20 @@ export default function Home() {
             à l’abri.
           </p>
         </div>
-        {/*md:my-32 et md:py-32, objectif ?*/}
-        <div className="flex flex-col px-5 md:flex-row md:py-8">
-          <div className="md:w-1/3 md:py-6">
+        <div className="flex flex-col px-5  md:my-32 md:flex-row md:py-32">
+          <div className="md:w-1/5 md:p-20">
             <Image
               src={builderImg}
               alt=""
               className="drop-shadow-dark-cyan -translate-y-6 transform"
             />
           </div>
-          <div className="flex flex-grow flex-col justify-between">
+          <div className="flex flex-grow flex-col justify-between md:px-8">
             <div>
-              <h2 className="text-5xl tracking-tight md:text-3xl">
+              <h2 className="text-5xl tracking-tight md:text-6xl">
                 <strong>Maçon</strong>, dis-tu ?
               </h2>
-              <p className="my-6 leading-snug md:w-7/12 md:leading-tight">
+              <p className="my-6 leading-snug md:w-2/5 md:leading-tight">
                 <strike>Presque</strike> 30ans, passionné de mode sombre et de
                 textes colorés qui défilent…
                 <br />
@@ -78,7 +77,7 @@ export default function Home() {
                 ce terme.
               </p>
             </div>
-            <p className="my-20 text-right text-2xl font-semibold tracking-tighter text-dark-cyan md:text-8xl md:tracking-tight">
+            <p className="my-5 text-right text-2xl font-semibold tracking-tighter text-dark-cyan md:text-8xl md:tracking-tight">
               J'aime créer, <br />
               <span className="font-normal">résoudre les problèmes,</span>
               <br /> tester des idées{' '}
