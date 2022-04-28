@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { ProjectsData } from '../../components/ProjectsData'
 
 
 export default function Home() {

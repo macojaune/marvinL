@@ -6,11 +6,9 @@ import leftArrow from '../public/leftArrow.png'
 import rightArrow from '../public/rightArrow.png'
 
 
-// hook, f°, globale de react,
-// useEffect, exec f° + réaffiche compo , 
 
-const ProjectSlider = ( {slides} ) => {
-  // cont data in compo, 
+
+const ProjectsSlider = ( {slides} ) => {
   const [current, setCurrent] = useState(0)
   const length = slides.length
 
@@ -31,19 +29,23 @@ const ProjectSlider = ( {slides} ) => {
     <>
     {ProjectsData.map((project,index) => {
       return (
-        // Changer ordre colonne css order
         <div className={index === current ? 'inline' : 'hidden'} key={index}>
-          <div className="mt-4 flex md:hidden h-screen flex-col">
-            <div className="flex flex-col h-1/4 md:w-full justify-between bg-dark-cyan py-3 px-5">
+          <div className="mt-4 flex h-screen flex-col">
+            <div className="flex flex-col h-1/4 md:w-full md:order-last justify-between bg-dark-cyan py-3 px-5">
               <div className="md:mx-96">
                 <div className=" text-xl">J'ai bétonné</div>
                 <div className="text-5xl font-semibold">
                   {project.url}<small className="font-light">.fr</small>
                 </div>
+                <div className="hidden md:flex md:flex-row md:justify-end">
+                  <Link href={"/projects/" + project.url} className="">
+                    <a>-> Détails</a>
+                  </Link>
+                </div>
               </div>
               <div className="flex flex-row justify-end">
-                <div className="flex flex-row w-1/5 items-center justify-between">
-                    <div className="w-5/12">
+                <div className="flex md:hidden flex-row w-1/6 items-center justify-between">
+                    <div className="w-1/3">
                       <Image
                         src={leftArrow}
                         alt=""
@@ -55,7 +57,7 @@ const ProjectSlider = ( {slides} ) => {
                         onClick={prevSlide}
                       />
                     </div>
-                    <div className="w-5/12">
+                    <div className="w-1/3">
                       <Image
                         src={rightArrow}
                         alt=""
@@ -70,10 +72,10 @@ const ProjectSlider = ( {slides} ) => {
                   </div>
                 </div>
             </div>
-            <div className="flex flex-row h-3/4 bg-salmon p-3 py-5">
-              <div className="flex w-1/2 h-full justify-center items-center">
+            <div className="flex flex-row h-3/4 bg-salmon p-3 py-5 md:p-10">
+              <div className="flex w-1/2 md:w-2/3 md:h-full justify-center items-center md:order-last">
                 {index === current && (
-                  <div className="w-11/12">
+                  <div className="w-11/12 md:hidden">
                     <Image
                       src={project.imageMobile}
                       alt=""
@@ -85,28 +87,30 @@ const ProjectSlider = ( {slides} ) => {
                     />
                   </div>
                 )}
+                {index === current && (
+                  <div className="hidden md:block md:w-11/12">
+                    <Image
+                      src={project.image}
+                      alt=""
+                      height="347"
+                      width="525"
+                      layout="responsive"
+                      className=""
+                    />
+                  </div>
+                )}
               </div>
-              <div className="flex flex-col w-1/2 items-start justify-end">
+              <div className="flex flex-col w-1/2 items-start justify-end md:justify-center md:order-first">
                 {/* {index === current && ( */}
                   <h2 className="text-3xl">{project.title}</h2>
                 {/* )} */}
                 <p className="text-sm my-2">{project.tech}</p>
-                <div className="text-right w-full">
+                <div className="text-right w-full md:hidden">
                   <Link href={"/projects/" + project.url} className="">
                     <a className="text-xl">-> Détails</a>
                   </Link>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div className="mt-4 hidden md:flex h-screen flex-col">
-            <div className="flex flex-row md:h-5/6 bg-salmon md:px-14">
-              <div className="flex flex-col md:w-1/3 items-start justify-center">
-                {/* {index === current && ( */}
-                  <h2 className="md:text-4xl">{project.title}</h2>
-                {/* )} */}
-                <p className="md:my-4">{project.tech}</p>
-                <div className="flex flex-row w-16 h-10 items-center justify-between">
+                <div className="hidden md:flex md:flex-row w-16 h-10 items-center justify-between">
                   <div className="w-5/12">
                     <Image
                       src={leftArrow}
@@ -133,32 +137,6 @@ const ProjectSlider = ( {slides} ) => {
                   </div>
                 </div>
               </div>
-              <div className="flex md:w-2/3 h-full justify-center items-center">
-                {index === current && (
-                  <div className="w-11/12">
-                    <Image
-                      src={project.image}
-                      alt=""
-                      height="347"
-                      width="525"
-                      layout="responsive"
-                      className=""
-                    />
-                  </div>)}
-              </div>
-            </div>
-            <div className="flex flex-col md:h-1/6 md:w-full justify-between bg-dark-cyan md:py-3 md:px-5">
-              <div className="md:mx-96">
-                <div className=" text-xl">J'ai bétonné</div>
-                <div className="text-5xl font-semibold">
-                  {project.url}<small className="font-light">.fr</small>
-                </div>
-              </div>
-              <div className="text-right md:mx-96">
-                <Link href={project.details} className="">
-                  <a>-> Détails</a>
-                </Link>
-              </div>
             </div>
           </div>
         </div>
@@ -168,4 +146,4 @@ const ProjectSlider = ( {slides} ) => {
   )
 }
 
-export default ProjectSlider
+export default ProjectsSlider

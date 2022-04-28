@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import TextSlider from '../components/TextSlider'
 import { ProjectsData } from '../components/ProjectsData.js'
-import ProjectSlider from '../components/ProjectsSlider'
+import ProjectsSlider from '../components/ProjectsSlider'
 import builderImg from '../public/builder.png'
 
 export default function Home() {
@@ -85,46 +85,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-        {/* <div className="mt-4 flex h-screen flex-col"> */}
-          <ProjectSlider slides={ProjectsData}/>
-          {/* <div className="flex flex-row h-5/6 md:px-14 md:py-5 bg-salmon">
-            <div className="flex flex-col md:w-1/3 items-start justify-center">
-              VARIABLE ICI
-              <h2 className="md:text-4xl">Site e-commerce</h2>
-              <p className="md:my-4">React + Wordpress + Opencart</p>
-            </div>
-            Créer compo pour carroussel (haut, bas), données dans tableau, 
-            <div className="md:w-2/3 flex relative justify-center items-center">
-              Smartphone et tablette
-              <div className="w-3/4">
-                <ProjectSlider/>
-                <Image
-                  src={devicesImg}
-                  alt=""
-                  height="354"
-                  width="452"
-                  layout="responsive"
-                  priority=""
-                  className=""
-                />
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-col h-1/6 md:w-full justify-between bg-dark-cyan py-3 px-5">
-            <div className="md:mx-96">
-              <div className=" text-xl">J'ai bétonné</div>
-              <div className="text-5xl font-semibold">
-                Client<small className="font-light">.fr</small>
-              </div>
-            </div>
-            <div className="text-right md:mx-96">
-              
-              <Link href="/projects/project" className="">
-                <a>Détails</a>
-              </Link>
-            </div>
-          </div> */}
-        {/* </div> */}
+        <ProjectsSlider slides={ProjectsData}/>
       </main>
     </>
   )
