@@ -18,7 +18,7 @@ export default function Home() {
       </Head>
 
       <main className="m-h-screen m-w-full pt-12 md:px-0">
-      <div className="flex flex-col items-center justify-center px-5">
+        <div className="flex flex-col items-center justify-center px-5">
           <h1 className="text-left">
             <span className="font-mono text-base leading-tight">
               SALUT, JE SUIS
