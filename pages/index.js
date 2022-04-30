@@ -1,12 +1,41 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import fs from 'fs';
+import matter from 'gray-matter';
 import TextSlider from '../components/TextSlider'
 import { ProjectsData } from '../components/ProjectsData.js'
 import ProjectsSlider from '../components/ProjectsSlider'
 import builderImg from '../public/builder.png'
+import leftArrow from '../public/leftArrow.png'
+import rightArrow from '../public/rightArrow.png'
+// import article from '../public/article2.png'
 
-export default function Home() {
+
+
+export async function getStaticProps() {
+  // POURQUOI PAS DE ../ ici ?
+  const files = fs.readdirSync('blog/posts')
+
+  const posts = files.map((fileName) => {
+      const slug = fileName.replace('.md', '')
+      const readFile = fs.readFileSync(`blog/posts/${fileName}`, 'utf-8')
+      const { data: frontmatter } = matter(readFile)
+
+      return {
+          slug,
+          frontmatter,
+      }
+  })
+
+  return {
+      props: {
+          posts,
+      }
+  }
+}
+
+export default function Home({ posts }) {
   return (
     <>
       <Head>
@@ -86,6 +115,58 @@ export default function Home() {
           </div>
         </div>
         <ProjectsSlider slides={ProjectsData}/>
+        {/* <ArticlesSlider /> */}
+    
+        <div className="flex md:flex-col md:h-screen p-5">
+					<div className="text-6xl font-bold">Articles</div>
+          <div className="flex justify-between h-fit items-center p-10 px-20">
+            <div className="w-7">
+              <Image
+                src={leftArrow}
+                alt=""
+                height="24"
+                width="24"
+                layout="responsive"
+                priority=""
+                className="cursor-pointer"
+              />
+            </div>
+            <div className="grid grid-cols-3 gap-x-2 h-full justify-around">
+              {posts.map(({slug, frontmatter}) => (
+                <Link href={`post/${slug}`}>
+                  <a className="">
+                    <div className="flex flex-col h-1/2">
+                      <div className="">
+                        <Image 
+                          src={frontmatter.socialImage}
+                          layout="responsive"
+                          width='997'
+                          height='400'
+                          className=""
+                        />
+                      </div>
+                      <div className="h-3/4 p-3">
+                        <h2 className="text-2xl font-bold">{frontmatter.title}</h2>
+                        <p className="font-light">{frontmatter.metaDesc}</p>
+                      </div>
+                    </div>
+                  </a>
+                </Link>
+              ))}
+            </div>
+            <div className="w-7">
+              <Image
+                src={rightArrow}
+                alt=""
+                height="24"
+                width="24"
+                layout="responsive"
+                priority=""
+                className="cursor-pointer"
+              />
+            </div>
+          </div>
+        </div>
       </main>
     </>
   )

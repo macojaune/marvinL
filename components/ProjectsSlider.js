@@ -6,8 +6,6 @@ import leftArrow from '../public/leftArrow.png'
 import rightArrow from '../public/rightArrow.png'
 
 
-
-
 const ProjectsSlider = ( {slides} ) => {
   const [current, setCurrent] = useState(0)
   const length = slides.length
@@ -31,7 +29,7 @@ const ProjectsSlider = ( {slides} ) => {
       return (
         <div className={index === current ? 'inline' : 'hidden'} key={index}>
           <div className="mt-4 flex h-screen flex-col">
-            <div className="flex flex-col h-1/4 md:w-full md:order-last justify-between bg-dark-cyan py-3 px-5">
+            <div className="flex flex-col h-1/4 md:w-full md:order-last justify-between bg-dark-cyan p-5 px-5">
               <div className="md:mx-96">
                 <div className=" text-xl">J'ai bétonné</div>
                 <div className="text-5xl font-semibold">
