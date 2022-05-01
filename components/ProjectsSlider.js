@@ -5,7 +5,6 @@ import { ProjectsData } from './ProjectsData'
 import leftArrow from '../public/leftArrow.png'
 import rightArrow from '../public/rightArrow.png'
 
-
 const ProjectsSlider = ( {slides} ) => {
   const [current, setCurrent] = useState(0)
   const length = slides.length
