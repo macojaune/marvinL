@@ -1,5 +1,5 @@
 ---
-title: 'Article 6'
+title: 'Article 5'
 metaDesc: 'Un exemple de description liée à un article'
 socialImage: '/../public/article.png'
 ---
