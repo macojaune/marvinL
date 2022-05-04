@@ -8,8 +8,6 @@ import { ProjectsData } from '../components/ProjectsData.js'
 import ProjectsSlider from '../components/ProjectsSlider'
 import ArticlesSlider from '../components/ArticlesSlider'
 import builderImg from '../public/builder.png'
-import leftArrow from '../public/leftArrow.png'
-import rightArrow from '../public/rightArrow.png'
 
 export async function getStaticProps() {
   const files = fs.readdirSync('posts')
@@ -112,11 +110,11 @@ export default function Home({ posts }) {
         <ProjectsSlider slides={ProjectsData}/>
         <ArticlesSlider posts={posts}/>
         <div className="flex flex-col half-screen bg-salmon justify-center items-center p-20">
-          <Link href="contact.js">
+          {/* <Link href="contact.js"> */}
             <a>
               <h2 className="text-8xl">Me contacter ?</h2>
             </a>
-          </Link>
+          {/* </Link> */}
         </div>
       </main>
     </>

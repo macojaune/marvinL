@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import matter from 'gray-matter';
+import matter from 'gray-matter'
 import leftArrow from '../public/leftArrow.png'
 import rightArrow from '../public/rightArrow.png'
 
@@ -13,11 +13,35 @@ const ArticlesSlider = ({ posts }) => {
 	const [end, setEnd] = useState(2);
 
 	const nextSlide = () => {
-		setEnd(length > end + 3 ? end + 3	: length === end + 3 ? length : length === end + 2 ? length : length === end + 1 ? length : 2)
+		let result;
+
+		if (length > 2) {
+			if (end === length){
+				result = 2;
+			} else if (end + 1 <= length && length <= end + 3) {
+				result = length;
+			} else {
+				result = end + 3;
+			}
+		}
+		
+		setEnd(result);
 	}
 
 	const prevSlide = () => {
-		setEnd(end - 2 > 0 ? end - 2	: length)
+		let result;
+
+		if (length > 2){
+			if (0 <= end - 3 && end - 3 <= 2){
+				result = 2;
+			} else if (end - 3 < 0){
+				result = length;
+			} else {
+				result = end - 3;
+			}
+		}
+
+		setEnd(result);
 	}
 
 	return (
@@ -46,6 +70,7 @@ const ArticlesSlider = ({ posts }) => {
 											<Image 
 												src={frontmatter.socialImage}
 												layout="responsive"
+												// Not real dimension
 												width='997'
 												height='400'
 												className=""

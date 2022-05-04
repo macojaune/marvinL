@@ -29,29 +29,6 @@ export async function getStaticProps ({ params: { slug } }) {
 	};
 }
 
-// export default function PostPage({ frontmatter, content }) {
-// 	return (
-// 		<div className='px-72'>
-// 			<div className='h-screen'>
-// 				<div className="h-1/2">
-// 					<Image 
-// 						src={frontmatter.socialImage}
-// 						layout="responsive"
-// 						width='997'
-// 						height='400'
-// 						className=""
-// 					/>
-// 				</div>
-// 				<h1 className='text-6xl text-center mt-5'>{frontmatter.title}</h1>
-// 				<p className='text-xl text-salmon'>Auteur : </p>
-// 				<p className='text-xl text-salmon'>Date : </p>
-// 			</div>
-// 			<div dangerouslySetInnerHTML={{ __html: md().render(content) }} />
-// 		</div>
-// 	);
-// }
-
-
 export default function PostPage({ frontmatter, content }) {
   return (
     <article className='prose mx-auto'>
