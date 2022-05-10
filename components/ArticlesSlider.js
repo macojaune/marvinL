@@ -1,106 +1,80 @@
-import React, {useState} from 'react'
+import React, {useRef} from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import matter from 'gray-matter'
-import leftArrow from '../public/leftArrow.png'
-import rightArrow from '../public/rightArrow.png'
+import leftArrowColored from '../public/leftArrowColored.png'
+import rightArrowColored from '../public/rightArrowColored.png'
 
 
+import Slider from "react-slick";
+import "../node_modules/slick-carousel/slick/slick.css"; 
+import "../node_modules/slick-carousel/slick/slick-theme.css";
 
-const ArticlesSlider = ({ posts }) => {
-	
-	const length = posts.length - 1;
-	const [end, setEnd] = useState(2);
+const ArticlesSlider = ({posts}) => {
+    const settings = {
+      dots: false,
+      arrows: false,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 4.5,
+      slidesToScroll: 4,
+    };
 
-	const nextSlide = () => {
-		let result;
+		const slider = useRef(null)
 
-		if (length > 2) {
-			if (end === length){
-				result = 2;
-			} else if (end + 1 <= length && length <= end + 3) {
-				result = length;
-			} else {
-				result = end + 3;
-			}
-		}
-		
-		setEnd(result);
-	}
-
-	const prevSlide = () => {
-		let result;
-
-		if (length > 2){
-			if (0 <= end - 3 && end - 3 <= 2){
-				result = 2;
-			} else if (end - 3 < 0){
-				result = length;
-			} else {
-				result = end - 3;
-			}
+		const next = () => {
+			slider.current.slickNext();
 		}
 
-		setEnd(result);
-	}
+		const previous = () => {
+			slider.current.slickPrev();
+		}
 
 	return (
-		<div className="flex md:flex-col md:h-screen max-h-screen justify-center">
-			<div className="text-6xl font-bold">Articles</div>
-			<div className="flex justify-between h-fit items-center px-20">
-				<div className="w-7">
-					<Image
-						src={leftArrow}
-						alt=""
-						height="24"
-						width="24"
-						layout="responsive"
-						priority=""
-						className="cursor-pointer"
-						onClick={prevSlide}
-					/>
-				</div>
-				<div className="grid grid-cols-3 gap-x-2 overflow-hidden h-80 w-full justify-around p-5">
-					{posts.map(({slug, frontmatter}, index) => (
-						<div key={slug} className={index <= end && index >= end - 2? 'block' : 'hidden'}>
-							<Link href={`/post/${slug}`}>
-								<a className="">
-									<div className="flex flex-col h-1/2">
-										<div className="">
-											<Image 
-												src={frontmatter.socialImage}
-												layout="responsive"
-												// Not real dimension
-												width='997'
-												height='400'
-												className=""
-											/>
-										</div>
-										<div className="h-3/4 p-3">
-											<h2 className="text-2xl font-bold">{frontmatter.title}</h2>
-											<p className="font-light">{frontmatter.metaDesc}</p>
-										</div>
-									</div>
-								</a>
-							</Link>
-						</div>
-					))}
-				</div>
-				<div className="w-7">
-					<Image
-						src={rightArrow}
-						alt=""
-						height="24"
-						width="24"
-						layout="responsive"
-						priority=""
-						className="cursor-pointer"
-						onClick={nextSlide}
-					/>
-				</div>
+		<div className="flex flex-row mt-5 px-3">
+			<div className="w-6 flex flex-col justify-end gap-y-2">
+				<Image
+					src={leftArrowColored}
+					alt=""
+					height="24"
+					width="24"
+					layout="responsive"
+					priority=""
+					className="cursor-pointer"
+					onClick={previous}
+				/>
+				<Image
+					src={rightArrowColored}
+					alt=""
+					height="24"
+					width="24"
+					layout="responsive"
+					priority=""
+					className="cursor-pointer"
+					onClick={next}
+				/>
 			</div>
+			<Slider ref={slider} {...settings} className="w-11/12 grow px-2">
+				{posts.map(({slug, frontmatter}, index) => (
+					<Link href={`/post/${slug}`}>
+						{/* h-36 144px, h-32 128px, maquette 130px */}
+						<a className="rounded-xl overflow-hidden h-32 flex flex-row bg-charcoal">
+								<div className="flex flex-col justify-end w-56 p-3 gap-y-3">
+									<h2 className="text-xl font-medium">{frontmatter.title}</h2>
+								</div>
+								<div className="w-24">
+									<Image 
+										src={frontmatter.socialImage}
+										layout="responsive"
+										height='1000'
+										width='500'
+									/>
+								</div>
+						</a>
+					</Link>
+				))}
+			</Slider>
 		</div>
-	)
+	);
 }
 
-export default ArticlesSlider
+export default ArticlesSlider;

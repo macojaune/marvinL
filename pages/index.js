@@ -108,13 +108,17 @@ export default function Home({ posts }) {
           </div>
         </div>
         <ProjectsSlider slides={ProjectsData}/>
-        <ArticlesSlider posts={posts}/>
-        <div className="flex flex-col half-screen bg-salmon justify-center items-center p-20">
-          {/* <Link href="contact.js"> */}
+        {/* HAUTEUR MAQUETTE: 233px, h-56: 224px, h-60: 240px */}
+        <div className="flex flex-col justify-center h-60 py-7 px-1 overflow-hidden bg-washed-white">
+          <div className="text-salmon px-6 text-4xl font-semibold">J'ai écrit...</div>
+          <ArticlesSlider posts={posts}/>
+        </div>
+        <div className="flex flex-col h-screen justify-center items-center p-20">
+          <Link href="#">
             <a>
               <h2 className="text-8xl">Me contacter ?</h2>
             </a>
-          {/* </Link> */}
+          </Link>
         </div>
       </main>
     </>

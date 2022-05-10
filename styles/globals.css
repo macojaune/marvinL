@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Add gap between slider's items */
+.slick-slide > div {
+  margin: 0 13px;
+}
+.slick-list {
+  margin: 0 -13px;
+}
