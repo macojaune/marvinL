@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html{
+  scroll-behavior: smooth;
+}
+
 /* Add gap between slider's items */
 .slick-slide > div {
   margin: 0 13px;

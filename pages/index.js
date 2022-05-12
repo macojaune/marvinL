@@ -7,6 +7,7 @@ import TextSlider from '../components/TextSlider'
 import { ProjectsData } from '../components/ProjectsData.js'
 import ProjectsSlider from '../components/ProjectsSlider'
 import ArticlesSlider from '../components/ArticlesSlider'
+import Menu from '../components/Menu'
 import builderImg from '../public/builder.png'
 
 export async function getStaticProps() {
@@ -39,7 +40,10 @@ export default function Home({ posts }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="m-h-screen m-w-full pt-12 md:px-0">
+      <main id="home" className="m-h-screen m-w-full pt-12 md:px-0">
+        <div className="h-10 sticky top-8 z-10 px-10 flex items-center justify-end">
+          <Menu/>
+        </div>
         <div className="flex flex-col items-center justify-center px-5">
           <h1 className="text-left">
             <span className="font-mono text-base leading-tight">
@@ -107,13 +111,15 @@ export default function Home({ posts }) {
             </p>
           </div>
         </div>
-        <ProjectsSlider slides={ProjectsData}/>
+        <div id="projects">
+          <ProjectsSlider slides={ProjectsData}/>
+        </div>
         {/* HAUTEUR MAQUETTE: 233px, h-56: 224px, h-60: 240px */}
-        <div className="flex flex-col justify-center h-60 py-7 px-1 overflow-hidden bg-washed-white">
+        <div id="articles" className="flex flex-col justify-center h-60 py-7 px-1 overflow-hidden bg-washed-white">
           <div className="text-salmon px-6 text-4xl font-semibold">J'ai écrit...</div>
           <ArticlesSlider posts={posts}/>
         </div>
-        <div className="flex flex-col h-screen justify-center items-center p-20">
+        <div id="contact" className="flex flex-col h-screen justify-center items-center p-20">
           <Link href="#">
             <a>
               <h2 className="text-8xl">Me contacter ?</h2>
