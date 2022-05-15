@@ -41,7 +41,7 @@ export default function Home({ posts }) {
       </Head>
 
       <main id="home" className="m-h-screen m-w-full pt-12 md:px-0">
-        <div className="h-10 sticky top-8 z-10 px-10 flex items-center justify-end">
+        <div className="h-10 sticky top-8 z-10 mx-10 flex items-center justify-end">
           <Menu/>
         </div>
         <div className="flex flex-col items-center justify-center px-5">
