@@ -58,17 +58,17 @@ const ArticlesSlider = ({posts}) => {
 					<Link href={`/post/${slug}`}>
 						{/* h-36 144px, h-32 128px, maquette 130px */}
 						<a className="rounded-xl overflow-hidden h-32 flex flex-row bg-charcoal">
-								<div className="flex flex-col justify-end w-56 p-3 gap-y-3">
-									<h2 className="text-xl font-medium">{frontmatter.title}</h2>
-								</div>
-								<div className="w-24">
-									<Image 
-										src={frontmatter.socialImage}
-										layout="responsive"
-										height='1000'
-										width='500'
-									/>
-								</div>
+							<div className="flex flex-col justify-end w-56 p-3 gap-y-3">
+								<h2 className="text-xl font-medium">{frontmatter.title}</h2>
+							</div>
+							<div className="w-24">
+								<Image 
+									src={frontmatter.socialImage}
+									layout="responsive"
+									height='1000'
+									width='500'
+								/>
+							</div>
 						</a>
 					</Link>
 				))}

@@ -10,6 +10,7 @@ module.exports = {
       'washed-white': '#e4dfda',
       'dark-cyan': '#368f8b',
       salmon: '#c1666b',
+      'white': '#FFFFFF',
     },
     fontFamily: {
       sans: ['Inter', 'Oxygen', 'Ubuntu', 'Helvetica Neue'],
