@@ -32,9 +32,9 @@ export async function getStaticProps ({ params: { slug } }) {
 }
 
 export default function PostPage({ frontmatter, content }) {
-  return (
-    <article className='prose max-w-none bg-dark-cyan flex flex-row'>
-			<Link href="../">
+	return (
+		<article className='prose max-w-none bg-dark-cyan flex flex-row'>
+			<Link href="/">
 				<a className="w-32 h-fit pl-4 pt-5">
 					<div className=''>
 						<Image 
@@ -50,8 +50,6 @@ export default function PostPage({ frontmatter, content }) {
 				<div className='w-full'>
 					<Image 
 						src={frontmatter.socialImage}
-						width={frontmatter.width}
-						height={frontmatter.height}
 						// WIDTH ET HEIGHT SUIVANTS A SUPPRIMER
 						width="1365"
 						height="594"
@@ -60,7 +58,6 @@ export default function PostPage({ frontmatter, content }) {
 				</div>
 				<div className='flex flex-row py-9'>
 					{/* EXEMPLE DATE AS SUPPRIMER */}
-					{/* FIX ????? Donc pourquoi les dim changent ? */}
 					<div className='w-24 pt-3 text-white text-right text-xs font-semibold'>1 mai 2022</div>
 					{/* <div className='w-48 pt-3 text-white text-right text-xs font-semibold'>{frontmatter.date}</div> */}
 					<div className="pr-44 pl-5 w-full">
