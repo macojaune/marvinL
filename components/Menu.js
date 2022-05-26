@@ -42,7 +42,7 @@ function Navbar(props) {
         />
       </div>
       <Collapse orientation="horizontal" in={checked}>
-        <ul className={`flex flex-row justify-center items-center gap-x-5`}>
+        <ul className={`flex flex-col md:flex-row justify-center md:items-center md:gap-x-5`}>
           {props.children}
         </ul>
       </Collapse>

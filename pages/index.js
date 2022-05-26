@@ -41,7 +41,7 @@ export default function Home({ posts }) {
       </Head>
 
       <main id="home" className="m-h-screen m-w-full pt-12 md:px-0">
-        <div className="h-10 sticky top-8 z-10 mx-10 flex items-center justify-end">
+        <div className="h-18 md:h-10 sticky top-8 z-10 mx-5 md:mx-10 flex items-center justify-end">
           <Menu/>
         </div>
         <div className="flex flex-col items-center justify-center px-5">
@@ -57,7 +57,6 @@ export default function Home({ posts }) {
               , le maçon du web efficace
             </small>
           </h1>
-
           <p className="my-6 text-justify text-lg italic leading-snug md:text-left md:text-xl md:leading-tight">
             Si les fondations sont vos idées, <br className="md:hidden" /> je
             m’occupe des murs qui vont mettre{' '}
@@ -114,7 +113,6 @@ export default function Home({ posts }) {
         <div id="projects">
           <ProjectsSlider slides={ProjectsData}/>
         </div>
-        {/* HAUTEUR MAQUETTE: 233px, h-56: 224px, h-60: 240px */}
         <div id="articles" className="flex flex-col justify-center h-60 py-7 px-1 overflow-hidden bg-washed-white">
           <div className="text-salmon px-6 text-4xl font-semibold">J'ai écrit...</div>
           <ArticlesSlider posts={posts}/>

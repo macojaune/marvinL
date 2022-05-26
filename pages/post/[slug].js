@@ -5,10 +5,20 @@ import fs from 'fs';
 import matter from 'gray-matter';
 import md from 'markdown-it';
 import backArrow from '../../public/backArrow.png'
+import { useState } from 'react';
 
 
 export async function getStaticPaths() {
 	const files = fs.readdirSync('posts');
+	const posts = files.map((fileName) => {
+    const slug = fileName.replace('.md', '');
+    const readFile = fs.readFileSync(`posts/${fileName}`, 'utf-8');
+    const { data: frontmatter } = matter(readFile);
+      return {
+        slug,
+        frontmatter,
+      };
+  });
 	const paths = files.map((fileName) => ({
 		params: {
 			slug: fileName.replace('.md', ''),
@@ -20,18 +30,40 @@ export async function getStaticPaths() {
 	};
 }
 
-export async function getStaticProps ({ params: { slug } }) {
+export async function getStaticProps ({ params: { slug }}) {
+	const files = fs.readdirSync('posts')
+  const posts = files.map((fileName) => {
+    const slug = fileName.replace('.md', '');
+    const readFile = fs.readFileSync(`posts/${fileName}`, 'utf-8');
+    const { data: frontmatter } = matter(readFile);
+      return {
+        slug,
+        frontmatter,
+      };
+  });
+
 	const fileName = fs.readFileSync(`posts/${slug}.md`, 'utf-8');
 	const { data: frontmatter, content } = matter(fileName);
+	var ind = null;
+	const elt = files.map((fileName, index) => {
+    if (slug === fileName.replace('.md', '')){
+			ind = index; 
+		}
+		return {
+			ind,
+		};
+  });
 	return {
 		props: {
+			ind,
+			posts,
 			frontmatter,
 			content,
 		},
 	};
 }
 
-export default function PostPage({ frontmatter, content }) {
+export default function PostPage({ frontmatter, content, posts, ind}) {
 	return (
 		<article className='prose max-w-none bg-dark-cyan flex flex-row'>
 			<Link href="/">
@@ -50,50 +82,51 @@ export default function PostPage({ frontmatter, content }) {
 				<div className='w-full'>
 					<Image 
 						src={frontmatter.socialImage}
-						// WIDTH ET HEIGHT SUIVANTS A SUPPRIMER
 						width="1365"
 						height="594"
 						className="rounded-bl-xl"
 					/>
 				</div>
 				<div className='flex flex-row py-9'>
-					{/* EXEMPLE DATE AS SUPPRIMER */}
-					<div className='w-24 pt-3 text-white text-right text-xs font-semibold'>1 mai 2022</div>
-					{/* <div className='w-48 pt-3 text-white text-right text-xs font-semibold'>{frontmatter.date}</div> */}
+					<div className='w-24 pt-3 text-white text-right text-xs font-semibold'>{frontmatter.date}</div>
 					<div className="pr-44 pl-5 w-full">
 						<div className="pr-11">
 							<h1 className="text-white text-4xl mb-8">{frontmatter.title}</h1>
 							<div className="text-white text-sm leading-tight" dangerouslySetInnerHTML={{ __html: md().render(content) }} />
 						</div>
-						<Link href="#">
-							<a className="not-prose no-underline mt-10 mr-8 float-right flex flex-col">
-								<div className="mb-2 flex flex-row justify-end items-center">
-									<div className="w-14 text-xs text-white leading-tight">continuer la lecture</div>
-									<div className="flex items-center">
-										<Image 
-											src={backArrow}
-											width="36"
-											height="24"
-											className="rotate-180"
-										/>
-									</div>
-								</div>
-								{/* PRE-DEFINE HEIGHT AND WIDTH IN TAILWINDCONFIG */}
-								<div className="rounded-xl overflow-hidden w-64 h-28 flex flex-row bg-charcoal">
-									<div className="flex flex-col justify-end w-56 p-3 gap-y-3">
-										<h2 className="text-l text-white font-medium">{frontmatter.title}</h2>
-									</div>
-									<div className="w-24">
-										<Image 
-											src={frontmatter.socialImage}
-											layout="responsive"
-											height='1000'
-											width='500'
-										/>
-									</div>
-								</div>
-							</a>
-						</Link>
+						<div className="mt-24 flex flex-row pr-7 items-center justify-end not-prose">
+							{posts.map(({slug, frontmatter}, index) => (
+								<Link key={slug} href={`/post/${slug}`}>
+									<a className={` ${ ind + 1 > posts.length - 1 ? index === 0 ? "inline" : "hidden" : index === ind + 1 ? "inline" : "hidden"}`}>
+										<div className='flex flex-row items-center justify-end h-10 w-full'>
+											<div className="w-16 text-sm leading-tight">continuer la lecture</div>
+												<div className="w-10">
+													<Image 
+														src={backArrow}
+														layout="responsive"
+														height='22'
+														width='34'
+														className='-scale-100'
+													/>
+												</div>
+											</div>
+										<div className='rounded-xl overflow-hidden h-32 w-64 flex flex-row bg-charcoal'>
+											<div className="flex flex-col justify-end w-56 p-3 gap-y-3">
+												<h2 className="text-xl font-medium">{frontmatter.title}</h2>
+											</div>
+											<div className="w-24">
+												<Image 
+													src={frontmatter.socialImage}
+													layout="responsive"
+													height='1000'
+													width='500'
+												/>
+											</div>
+										</div>
+									</a>
+								</Link>
+							))}
+						</div>
 					</div>
 				</div>
 			</div>

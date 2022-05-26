@@ -25,7 +25,7 @@ const ProjectsSlider = ( {slides} ) => {
     <>
     {ProjectsData.map((project,index) => {
       return (
-        <div className={index === current ? 'inline' : 'hidden'} key={index}>
+        <div key={project.url} className={index === current ? 'inline' : 'hidden'}>
           <div className="mt-4 flex h-screen flex-col">
             <div className="flex flex-col h-1/4 md:w-full md:order-last justify-between bg-dark-cyan p-5 px-5">
               <div className="md:mx-96">

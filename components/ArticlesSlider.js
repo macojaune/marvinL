@@ -3,8 +3,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import leftArrowColored from '../public/leftArrowColored.png'
 import rightArrowColored from '../public/rightArrowColored.png'
-
-
 import Slider from "react-slick";
 import "../node_modules/slick-carousel/slick/slick.css"; 
 import "../node_modules/slick-carousel/slick/slick-theme.css";
@@ -54,9 +52,8 @@ const ArticlesSlider = ({posts}) => {
 				/>
 			</div>
 			<Slider ref={slider} {...settings} className="w-11/12 grow px-2">
-				{posts.map(({slug, frontmatter}, index) => (
-					<Link href={`/post/${slug}`}>
-						{/* h-36 144px, h-32 128px, maquette 130px */}
+				{posts.map(({slug, frontmatter}) => (
+					<Link key={slug} href={`/post/${slug}`}>
 						<a className="rounded-xl overflow-hidden h-32 flex flex-row bg-charcoal">
 							<div className="flex flex-col justify-end w-56 p-3 gap-y-3">
 								<h2 className="text-xl font-medium">{frontmatter.title}</h2>
