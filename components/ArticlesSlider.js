@@ -1,4 +1,4 @@
-import React, {useRef} from 'react'
+import React, {useRef, useState} from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import leftArrowColored from '../public/leftArrowColored.png'
@@ -8,24 +8,25 @@ import "../node_modules/slick-carousel/slick/slick.css";
 import "../node_modules/slick-carousel/slick/slick-theme.css";
 
 const ArticlesSlider = ({posts}) => {
-    const settings = {
-      dots: false,
-      arrows: false,
-      infinite: false,
-      speed: 500,
-      slidesToShow: 4.5,
-      slidesToScroll: 4,
-    };
+	const [hover,setHover] = useState(false)
+	const settings = {
+		dots: false,
+		arrows: false,
+		infinite: false,
+		speed: 500,
+		slidesToShow: 4.5,
+		slidesToScroll: 4,
+	};
 
-		const slider = useRef(null)
+	const slider = useRef(null)
 
-		const next = () => {
-			slider.current.slickNext();
-		}
+	const next = () => {
+		slider.current.slickNext();
+	}
 
-		const previous = () => {
-			slider.current.slickPrev();
-		}
+	const previous = () => {
+		slider.current.slickPrev();
+	}
 
 	return (
 		<div className="flex flex-row mt-5 px-3">
@@ -52,18 +53,19 @@ const ArticlesSlider = ({posts}) => {
 				/>
 			</div>
 			<Slider ref={slider} {...settings} className="w-11/12 grow px-2">
-				{posts.map(({slug, frontmatter}) => (
+				{posts.map(({slug, frontmatter}, index) => (
 					<Link key={slug} href={`/post/${slug}`}>
-						<a className="rounded-xl overflow-hidden h-32 flex flex-row bg-charcoal">
-							<div className="flex flex-col justify-end w-56 p-3 gap-y-3">
+						<a onMouseEnter={() => setHover(index)} onMouseLeave={() => setHover(false)} style={{backgroundImage: `${hover === index ? `url(${frontmatter.socialImage})` : "none"}`}} className={`bg-no-repeat bg-cover rounded-xl overflow-hidden h-32 flex flex-row bg-charcoal`}>
+							<div className={` ${hover === index ? "w-72 duration-200 bg-light-charcoal" : "" } flex flex-col justify-end w-56 p-3 gap-y-3`}>
 								<h2 className="text-xl font-medium">{frontmatter.title}</h2>
 							</div>
-							<div className="w-24">
+							<div className={`${hover === index ? "w-0 opacity-0 duration-200" : " duration-200"} w-24 relative`}>
 								<Image 
-									src={frontmatter.socialImage}
-									layout="responsive"
+									src={`${frontmatter.socialImage}`}
+									layout='fill'
 									height='1000'
 									width='500'
+									objectFit='cover'
 								/>
 							</div>
 						</a>

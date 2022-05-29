@@ -64,9 +64,11 @@ export async function getStaticProps ({ params: { slug }}) {
 }
 
 export default function PostPage({ frontmatter, content, posts, ind}) {
+	const [hover,setHover] = useState(false)
+
 	return (
 		<article className='prose max-w-none bg-dark-cyan flex flex-row'>
-			<Link href="/">
+			<Link href="/#articles">
 				<a className="w-32 h-fit pl-4 pt-5">
 					<div className=''>
 						<Image 
@@ -110,16 +112,18 @@ export default function PostPage({ frontmatter, content, posts, ind}) {
 													/>
 												</div>
 											</div>
-										<div className='rounded-xl overflow-hidden h-32 w-64 flex flex-row bg-charcoal'>
-											<div className="flex flex-col justify-end w-56 p-3 gap-y-3">
+										<div onMouseEnter={() => setHover(index)} onMouseLeave={() => setHover(false)} style={{backgroundImage: `${hover === index ? `url(${frontmatter.socialImage})` : "none"}`}} className='rounded-xl overflow-hidden h-32 w-66 flex flex-row bg-charcoal'>
+											{/* <div className="flex flex-col justify-end w-56 p-3 gap-y-3"> */}
+											<div className={` ${hover === index ? "w-72 duration-200 bg-light-charcoal" : "" } flex flex-col justify-end w-56 p-3 gap-y-3`}>
 												<h2 className="text-xl font-medium">{frontmatter.title}</h2>
 											</div>
-											<div className="w-24">
+											<div className={`${hover === index ? "w-0 opacity-0 duration-200" : " duration-200"} w-24 relative`}>
 												<Image 
 													src={frontmatter.socialImage}
-													layout="responsive"
+													layout="fill"
 													height='1000'
 													width='500'
+													objectFit='cover'
 												/>
 											</div>
 										</div>
