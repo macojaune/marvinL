@@ -16,6 +16,29 @@ const ArticlesSlider = ({posts}) => {
 		speed: 500,
 		slidesToShow: 4.5,
 		slidesToScroll: 4,
+		responsive: [
+			{
+				breakpoint: 1024,
+				settings: {
+					slidesToShow: 2.5,
+					slidesToScroll: 2,
+				}
+			},
+			{
+				breakpoint: 768,
+				settings: {
+					slidesToShow: 2,
+					slidesToScroll: 2,
+				}
+			},
+			{
+				breakpoint: 425,
+				settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1,
+				}
+			}
+		]
 	};
 
 	const slider = useRef(null)
@@ -31,40 +54,42 @@ const ArticlesSlider = ({posts}) => {
 	return (
 		<div className="flex flex-row mt-5 px-3">
 			<div className="w-6 flex flex-col justify-end gap-y-2">
-				<Image
-					src={leftArrowColored}
-					alt=""
-					height="24"
-					width="24"
-					layout="responsive"
-					priority=""
-					className="cursor-pointer"
-					onClick={previous}
-				/>
-				<Image
-					src={rightArrowColored}
-					alt=""
-					height="24"
-					width="24"
-					layout="responsive"
-					priority=""
-					className="cursor-pointer"
-					onClick={next}
-				/>
+				<div>
+					<Image
+						src={leftArrowColored}
+						alt=""
+						height="24"
+						width="24"
+						layout="responsive"
+						priority=""
+						className="cursor-pointer"
+						onClick={previous}
+					/>
+				</div>
+				<div>
+					<Image
+						src={rightArrowColored}
+						alt=""
+						height="24"
+						width="24"
+						layout="responsive"
+						priority=""
+						className="cursor-pointer"
+						onClick={next}
+					/>
+				</div>
 			</div>
 			<Slider ref={slider} {...settings} className="w-11/12 grow px-2">
 				{posts.map(({slug, frontmatter}, index) => (
 					<Link key={slug} href={`/post/${slug}`}>
-						<a onMouseEnter={() => setHover(index)} onMouseLeave={() => setHover(false)} style={{backgroundImage: `${hover === index ? `url(${frontmatter.socialImage})` : "none"}`}} className={`bg-no-repeat bg-cover rounded-xl overflow-hidden h-32 flex flex-row bg-charcoal`}>
+						<a onMouseEnter={() => setHover(index)} onMouseLeave={() => setHover(false)} style={{backgroundImage: `${hover === index ? `url(${frontmatter.image})` : "none"}`}} className={`bg-no-repeat bg-cover rounded-xl overflow-hidden h-32 flex flex-row bg-charcoal`}>
 							<div className={` ${hover === index ? "w-72 duration-200 bg-light-charcoal" : "" } flex flex-col justify-end w-56 p-3 gap-y-3`}>
 								<h2 className="text-xl font-medium">{frontmatter.title}</h2>
 							</div>
 							<div className={`${hover === index ? "w-0 opacity-0 duration-200" : " duration-200"} w-24 relative`}>
 								<Image 
-									src={`${frontmatter.socialImage}`}
+									src={`${frontmatter.image}`}
 									layout='fill'
-									height='1000'
-									width='500'
 									objectFit='cover'
 								/>
 							</div>
