@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html{
+  scroll-behavior: smooth;
+}
+
+/*(Articles Slider) Add gap between slider's items */
+.slick-slide > div {
+  margin: 0 13px;
+}
+.slick-list {
+  margin: 0 -13px;
+}
