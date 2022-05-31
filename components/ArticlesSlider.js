@@ -4,11 +4,11 @@ import Link from 'next/link'
 import leftArrowColored from '../public/leftArrowColored.png'
 import rightArrowColored from '../public/rightArrowColored.png'
 import Slider from "react-slick";
-import "../node_modules/slick-carousel/slick/slick.css"; 
+import "../node_modules/slick-carousel/slick/slick.css";
 import "../node_modules/slick-carousel/slick/slick-theme.css";
 
 const ArticlesSlider = ({posts}) => {
-	const [hover,setHover] = useState(false)
+	const [hover, setHover] = useState(false)
 	const settings = {
 		dots: false,
 		arrows: false,
@@ -80,22 +80,30 @@ const ArticlesSlider = ({posts}) => {
 				</div>
 			</div>
 			<Slider ref={slider} {...settings} className="w-11/12 grow px-2">
-				{posts.map(({slug, frontmatter}, index) => (
-					<Link key={slug} href={`/post/${slug}`}>
-						<a onMouseEnter={() => setHover(index)} onMouseLeave={() => setHover(false)} style={{backgroundImage: `${hover === index ? `url(${frontmatter.image})` : "none"}`}} className={`bg-no-repeat bg-cover rounded-xl overflow-hidden h-32 flex flex-row bg-charcoal`}>
-							<div className={` ${hover === index ? "w-72 duration-200 bg-light-charcoal" : "" } flex flex-col justify-end w-56 p-3 gap-y-3`}>
-								<h2 className="text-xl font-medium">{frontmatter.title}</h2>
-							</div>
-							<div className={`${hover === index ? "w-0 opacity-0 duration-200" : " duration-200"} w-24 relative`}>
-								<Image 
-									src={`${frontmatter.image}`}
-									layout='fill'
-									objectFit='cover'
-								/>
-							</div>
-						</a>
-					</Link>
-				))}
+				{posts.map(({slug, frontmatter}, index) =>
+					(
+						<Link key={slug} href={`/post/${slug}`}>
+							<a onMouseEnter={() => setHover(index)}
+							   onMouseLeave={() => setHover(false)}
+							   className={`flex relative rounded-xl overflow-hidden h-32`}>
+								<div className={` ${hover === index ? 
+									"w-full bg-light-charcoal" : "w-56 bg-charcoal"} z-10 p-3 transition-all duration-700`}>
+									<h2 className="text-xl font-medium">{frontmatter.title}</h2>
+								</div>
+								<div
+									className={`${hover === index ? "" : "w-24"} transition-all duration-200 z-1`}
+								>
+									<Image
+										src={require('../public' + frontmatter.image)}
+										layout='fill'
+										objectFit="cover"
+										alt=""
+									/>
+								</div>
+							</a>
+						</Link>
+					)
+				)}
 			</Slider>
 		</div>
 	);
