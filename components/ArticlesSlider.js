@@ -84,8 +84,8 @@ const ArticlesSlider = ({posts}) => {
 					(
 						<Link key={slug} href={`/post/${slug}`}>
 							<a onMouseEnter={() => setHover(index)}
-							   onMouseLeave={() => setHover(false)}
-							   className={`flex relative rounded-xl overflow-hidden h-32`}>
+								onMouseLeave={() => setHover(false)}
+								className={`flex relative rounded-xl overflow-hidden h-32`}>
 								<div className={` ${hover === index ? 
 									"w-full bg-light-charcoal" : "w-56 bg-charcoal"} z-10 p-3 transition-all duration-700`}>
 									<h2 className="text-xl font-medium">{frontmatter.title}</h2>

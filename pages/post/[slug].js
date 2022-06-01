@@ -112,15 +112,20 @@ export default function PostPage({ frontmatter, content, posts, ind}) {
 													/>
 												</div>
 											</div>
-										<div onMouseEnter={() => setHover(index)} onMouseLeave={() => setHover(false)} style={{backgroundImage: `${hover === index ? `url(${frontmatter.image})` : "none"}`}} className='rounded-xl overflow-hidden h-32 w-66 flex flex-row bg-charcoal'>
-											<div className={` ${hover === index ? "w-72 duration-200 bg-light-charcoal" : "" } flex flex-col justify-end w-56 p-3 gap-y-3`}>
+										<div 
+											onMouseEnter={() => setHover(index)}
+											onMouseLeave={() => setHover(false)} 
+											className={`flex relative rounded-xl overflow-hidden w-66 h-32`}>
+											<div className={` ${hover === index ? 
+									"w-full bg-light-charcoal" : "w-56 bg-charcoal"} z-10 p-3 transition-all duration-700`}>
 												<h2 className="text-xl font-medium">{frontmatter.title}</h2>
 											</div>
-											<div className={`${hover === index ? "w-0 opacity-0 duration-200" : " duration-200"} w-24 relative`}>
+											<div className={`${hover === index ? "" : "w-24"} transition-all duration-200 z-1`}>
 												<Image 
-													src={frontmatter.image}
+													src={require('../../public' + frontmatter.image)}
 													layout="fill"
 													objectFit='cover'
+													alt=""
 												/>
 											</div>
 										</div>

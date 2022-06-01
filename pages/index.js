@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import fs from 'fs';
@@ -7,7 +6,6 @@ import TextSlider from '../components/TextSlider'
 import { ProjectsData } from '../components/ProjectsData.js'
 import ProjectsSlider from '../components/ProjectsSlider'
 import ArticlesSlider from '../components/ArticlesSlider'
-import Menu from '../components/Menu'
 import builderImg from '../public/builder.png'
 
 export async function getStaticProps() {
@@ -32,18 +30,7 @@ export async function getStaticProps() {
 export default function Home({ posts }) {
   return (
     <>
-      <Head>
-        <title>MarvinL.com</title>
-        <meta name="description" content="Le maçon du web efficace" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta charSet="utf-8" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <main id="home" className="m-h-screen m-w-full pt-12 md:px-0">
-        <div className="h-18 md:h-10 sticky top-8 z-10 mx-5 md:mx-10 flex items-center justify-end">
-          <Menu/>
-        </div>
         <div className="flex flex-col items-center justify-center px-5">
           <h1 className="text-left">
             <span className="font-mono text-base leading-tight">

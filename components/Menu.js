@@ -8,10 +8,10 @@ import Collapse from "@mui/material/Collapse";
 const Menu = () => {
   return (
     <Navbar>
-      <NavItem text="Accueil" link="#home"/>
-      <NavItem text="Projets" link="#projects"/>
-      <NavItem text="Articles" link="#articles"/>
-      <NavItem text="Contact" link="#contact"/>
+      <NavItem text="Accueil" link="../#home"/>
+      <NavItem text="Projets" link="../#projects"/>
+      <NavItem text="Articles" link="../#articles"/>
+      <NavItem text="Contact" link="../#contact"/>
     </Navbar>
   )
 }
@@ -22,13 +22,9 @@ function Navbar(props) {
   const [checked, setChecked] = React.useState(false);
   const [open, setOpen] = useState(false)
 
-  const toggle = () => {
-    setOpen(!open);
-  }
   const handleChange = () => {
     setChecked((prev) => !prev);
     setOpen(!open);
-
   };
 
   return (
