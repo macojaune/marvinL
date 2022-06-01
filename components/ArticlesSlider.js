@@ -61,7 +61,6 @@ const ArticlesSlider = ({posts}) => {
 						height="24"
 						width="24"
 						layout="responsive"
-						priority=""
 						className="cursor-pointer"
 						onClick={previous}
 					/>
@@ -73,33 +72,36 @@ const ArticlesSlider = ({posts}) => {
 						height="24"
 						width="24"
 						layout="responsive"
-						priority=""
 						className="cursor-pointer"
 						onClick={next}
 					/>
 				</div>
 			</div>
 			<Slider ref={slider} {...settings} className="w-11/12 grow px-2">
-				{posts.map(({slug, frontmatter}, index) => {
-					// const image = frontmatter.image;
-					return(
+			{posts.map(({slug, frontmatter}, index) =>
+					(
 						<Link key={slug} href={`/post/${slug}`}>
-							<a onMouseEnter={() => setHover(index)} onMouseLeave={() => setHover(false)} className={`relative bg-no-repeat bg-cover rounded-xl overflow-hidden h-32 flex bg-charcoal`}>
-								<div className={` ${hover === index ? "w-full absolute" : "" } z-10 duration-200 flex flex-col justify-end w-56 p-3 gap-y-3`}>
+							<a onMouseEnter={() => setHover(index)}
+								onMouseLeave={() => setHover(false)}
+								className={`flex relative rounded-xl overflow-hidden h-32`}>
+								<div className={` ${hover === index ? 
+									"w-full bg-light-charcoal" : "w-56 bg-charcoal"} z-10 p-3 transition-all duration-700`}>
 									<h2 className="text-xl font-medium">{frontmatter.title}</h2>
 								</div>
-								<div className={`${hover === index ? "w-full bg-salmon" : "w-24 relative"} duration-200`}>
-									<Image 
-										src={require(`../public${frontmatter.image}`)}
+								<div
+									className={`${hover === index ? "" : "w-24"} transition-all duration-200 z-1`}
+								>
+									<Image
+										src={require('../public' + frontmatter.image)}
 										layout='fill'
-										objectFit='cover'
+										objectFit="cover"
+										alt=""
 									/>
 								</div>
 							</a>
 						</Link>
-
 					)
-					})}
+				)}
 			</Slider>
 		</div>
 	);
