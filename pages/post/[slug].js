@@ -81,12 +81,13 @@ export default function PostPage({ frontmatter, content, posts, ind}) {
 				</a>
 			</Link>
 			<div className='w-11/12 md:w-full text-white'>
-				<div className='w-full h-96 relative'>
+				<div className='w-full block relative h-96 overflow-hidden rounded-bl-xl'>
 					<Image 
-						src={frontmatter.image}
+						src={require(`../../public${frontmatter.image}`)}
 						layout="fill"
 						objectFit='cover'
-						className="rounded-bl-xl"
+						objectPosition="center"
+						className=""
 					/>
 				</div>
 				<div className='flex flex-col md:flex-row pb-9 md:py-9'>

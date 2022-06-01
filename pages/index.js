@@ -37,6 +37,9 @@ export default function Home({ posts }) {
         <meta name="description" content="Le maçon du web efficace" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
+        <link rel="preconnect" href="https://fonts.googleapis.com"></link>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin></link>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Major+Mono+Display&display=swap" rel="stylesheet"></link>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
