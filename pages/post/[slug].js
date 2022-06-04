@@ -76,6 +76,7 @@ export default function PostPage({ frontmatter, content, posts, ind}) {
 							width="34"
 							height="22"
 							className=""
+							alt=''
 						/>
 					</div>
 				</a>
@@ -87,6 +88,7 @@ export default function PostPage({ frontmatter, content, posts, ind}) {
 						layout="fill"
 						objectFit='cover'
 						className="rounded-bl-xl"
+						alt=''
 					/>
 				</div>
 				<div className='flex flex-col md:flex-row pb-9 md:py-9'>
@@ -109,6 +111,7 @@ export default function PostPage({ frontmatter, content, posts, ind}) {
 														height='22'
 														width='34'
 														className='-scale-100'
+														alt=""
 													/>
 												</div>
 											</div>
