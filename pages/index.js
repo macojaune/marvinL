@@ -6,6 +6,7 @@ import TextSlider from '../components/TextSlider'
 import { ProjectsData } from '../components/ProjectsData.js'
 import ProjectsSlider from '../components/ProjectsSlider'
 import ArticlesSlider from '../components/ArticlesSlider'
+import ContactForm from '../components/contact'
 import builderImg from '../public/builder.png'
 
 export async function getStaticProps() {
@@ -105,11 +106,7 @@ export default function Home({ posts }) {
           <ArticlesSlider posts={posts}/>
         </div>
         <div id="contact" className="flex flex-col h-screen justify-center items-center p-20">
-          <Link href="#">
-            <a>
-              <h2 className="text-8xl">Me contacter ?</h2>
-            </a>
-          </Link>
+          <ContactForm />
         </div>
       </main>
     </>
