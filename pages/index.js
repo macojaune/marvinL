@@ -3,10 +3,10 @@ import Link from 'next/link'
 import fs from 'fs';
 import matter from 'gray-matter';
 import TextSlider from '../components/TextSlider'
-import { ProjectsData } from '../components/ProjectsData.js'
+import { ProjectsData } from '../components/ProjectsData'
 import ProjectsSlider from '../components/ProjectsSlider'
 import ArticlesSlider from '../components/ArticlesSlider'
-import ContactForm from '../components/contact'
+import ContactForm from '../components/Contact'
 import builderImg from '../public/builder.png'
 
 export async function getStaticProps() {
