@@ -18,10 +18,10 @@ export default function ContactForm () {
   const [answers, setAnswer] = useState({answer1: "", answer21: "", answer22: "", answer3: ""})
   
   const content = [
-    <Question1 answers={answers} setAnswer={setAnswer}/>,
-    <Question2 answers={answers} setAnswer={setAnswer}/>,
-    <Question3 answers={answers} setAnswer={setAnswer}/>,
-    <FormConfirmation answers={answers}/>,
+    <Question1 answers={answers} setAnswer={setAnswer} key="1"/>,
+    <Question2 answers={answers} setAnswer={setAnswer} key="2"/>,
+    <Question3 answers={answers} setAnswer={setAnswer} key="3"/>,
+    <FormConfirmation answers={answers} key="4"/>,
     "..."
   ];
 
