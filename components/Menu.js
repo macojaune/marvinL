@@ -35,6 +35,7 @@ function Navbar(props) {
           height="39"
           width="32"
           onClick={handleChange}
+          alt=""
         />
       </div>
       <Collapse orientation="horizontal" in={checked}>

@@ -6,7 +6,7 @@ import TextSlider from '../components/TextSlider'
 import { ProjectsData } from '../components/ProjectsData'
 import ProjectsSlider from '../components/ProjectsSlider'
 import ArticlesSlider from '../components/ArticlesSlider'
-import ContactForm from '../components/Contact'
+import ContactForm from '../components/ContactForm.js'
 import builderImg from '../public/builder.png'
 
 export async function getStaticProps() {
