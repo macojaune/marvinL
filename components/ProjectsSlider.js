@@ -77,7 +77,7 @@ const ProjectsSlider = ( {slides} ) => {
                 {index === current && (
                   <div className="w-11/12 md:hidden">
                     <Image
-                      src={project.imageMobile}
+                      src={require('../public/' + project.imageMobile)}
                       alt=""
                       height="207"
                       width="119"
@@ -90,7 +90,7 @@ const ProjectsSlider = ( {slides} ) => {
                 {index === current && (
                   <div className="hidden md:block md:w-11/12">
                     <Image
-                      src={project.image}
+                      src={require('../public/' + project.image)}
                       alt=""
                       height="347"
                       width="525"
