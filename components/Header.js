@@ -15,7 +15,7 @@ export default function Layout({ children }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin/>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Major+Mono+Display&display=swap" rel="stylesheet"/>
       </Head>
-      <header className="h-0 sticky top-16 z-10 mx-5 md:mx-10 flex items-center justify-end">
+      <header className="h-0 sticky top-20 md:top-16 z-10 mx-5 md:mx-10 flex items-center justify-end">
         <Menu/>
       </header>
       {children}

@@ -1,13 +1,10 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-// import fs from 'fs';
 import backArrow from '../../public/backArrow.png'
 import { ProjectsData } from '../../components/ProjectsData'
-// import { getStaticProps } from '..'
 
 export async function getStaticPaths () {
-	// const files = fs.readFileSync(`projects/${projectSlug}`)
 	const paths = ProjectsData.map((fileName, index) => ({
 		params: {
 			ind: index,
@@ -36,7 +33,7 @@ export default function Home ({ fileName, projectSlug, }) {
 			{ProjectsData.map((project, index) => {
 				return (
 					<article key={project.url} className={`${project.url === projectSlug ? "" : "hidden"} flex flex-row bg-charcoal pb-16 md:pb-0`}>
-						<div className='w-1/6 sticky top-10 h-max md:w-28 flex justify-center items-center p-2'>
+						<div className='w-1/6 sticky top-12 md:top-9 h-max md:w-28 flex justify-center items-center p-2'>
 							<Link href="/#projects">
 								<a className="p-3">
 									<div className=''>

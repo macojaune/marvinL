@@ -28,7 +28,7 @@ function Navbar(props) {
   };
 
   return (
-    <nav className={`flex flex-row items-center ${checked ?"gap-x-5" : ""} h-12 bg-washed-white/25 rounded-xl px-3`}>
+    <nav className={`flex flex-row items-center ${checked ?"gap-x-5 h-32 md:h-12 delay-0" : "delay-200 h-12"} transition-all duration-100 bg-washed-white/25 rounded-xl px-3`}>
       <div className={`${checked ? "-scale-x-100 hover:-scale-x-110 hover:scale-y-110" : "scale-x-100 hover:scale-110"} flex items-center cursor-pointer transition-{brightness} duration-200 hover:brightness-125`}>
         <Image
           src={hammerMenu}
