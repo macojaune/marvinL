@@ -8,6 +8,7 @@ import ProjectsSlider from '../components/ProjectsSlider'
 import ArticlesSlider from '../components/ArticlesSlider'
 import ContactForm from '../components/ContactForm.js'
 import builderImg from '../public/builder.png'
+import { motion } from "framer-motion"
 
 export async function getStaticProps() {
   const files = fs.readdirSync('posts')
@@ -41,9 +42,23 @@ export async function getStaticProps() {
 }
 
 export default function Home({ posts, projects }) {
+  const variants = {
+    hidden: { opacity: 0, x: 0, y: 200 },
+    enter: { opacity: 1, x: 0, y: 0 },
+    exit: { opacity: 0, x: 0, y: 100 },
+  }
   return (
-    <>
-      <main id="home" className="m-h-screen m-w-full pt-12 md:px-0">
+      <motion.main 
+        variants={variants} 
+        initial={"hidden"}
+        animate={"enter"}
+        exit={"exit"} 
+        transition={{ type: 'linear' }}
+        id="home" className="m-h-screen m-w-full pt-12 md:px-0"
+      >
+        <Link href='random'>
+          <a>Page random</a>
+        </Link>
         <div className="flex flex-col items-center justify-center px-5">
           <h1 className="text-left">
             <span className="font-mono text-base leading-tight">
@@ -120,7 +135,6 @@ export default function Home({ posts, projects }) {
         <div id="contact" className="flex flex-col h-screen justify-center items-center p-20">
           <ContactForm />
         </div>
-      </main>
-    </>
+      </motion.main>
   )
 }

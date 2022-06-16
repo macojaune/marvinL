@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router'
+import { motion } from "framer-motion"
 import Image from 'next/image'
 import Link from 'next/link'
 import fs from 'fs';
@@ -49,6 +50,13 @@ export async function getStaticProps({ params: { slug } }) {
 }
 
 export default function ProjectPage ({ frontmatter, content, currentIndex, files}) {
+
+	const variants = {
+    hidden: { opacity: 0, x: 0, y: 200 },
+    enter: { opacity: 1, x: 0, y: 0 },
+    exit: { opacity: 0, x: 0, y: 100 },
+  }
+
 	const router = useRouter();
 	const skipDiv = useRef(null)
 	const article = useRef(null)
@@ -91,30 +99,17 @@ export default function ProjectPage ({ frontmatter, content, currentIndex, files
 		}
 	})
 
-	// const componentDidMount = () => {
-	// 	window.addEventListener('scroll', this.onScroll, false);
-	// 	console.log("hey")
-	// }
-
-	// const componentWillUnmount = () => {
-	// 	window.removeEventListener('scroll', this.onScroll, false);
-	// }
-
-
-	// const handleScroll = () => {
-	// 	console.log("hey")
-		// const bottom = e.target.scrollHeight - e.target.scrollTop;
-		// if (bottom > 1) {
-		// }
-		// return;
-	// }
-
 	return (
-		<div className='flex flex-col'>
-			{/* {currentIndex} */}
+		<motion.div 
+			variants={variants} 
+			initial={"hidden"}
+			animate={"enter"}
+			exit={"exit"} 
+			transition={{ type: 'linear' }}
+			className='flex flex-col'>
 			<div className='flex flex-row'>
 				<div className='w-1/12 px-1 md:w-24 md:pl-4 pt-12'>
-					<Link href="/#projects">
+					<Link href="/" scroll={false}>
 						<a className="">
 							<div className='md:sticky md:top-8'>
 								<Image 
@@ -162,7 +157,7 @@ export default function ProjectPage ({ frontmatter, content, currentIndex, files
 			<div ref={skipDiv} className='h-screen bg-salmon' onScroll={handleScroll}>
 				Pour voir le projet suivant, scroll
 			</div>
-		</div>
+		</motion.div>
 	)
 }
 

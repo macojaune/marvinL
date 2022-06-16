@@ -34,7 +34,7 @@ const ProjectsSlider = ( {projects} ) => {
                   {slug}<small className="font-light">.fr</small>
                 </div>
                 <div className="hidden md:flex md:flex-row md:justify-end">
-                  <Link href={"/project/" + slug} className="">
+                  <Link href={"/project/" + slug} className="" scroll={false}>
                     <a>-> Détails</a>
                   </Link>
                 </div>
