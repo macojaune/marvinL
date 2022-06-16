@@ -1,12 +1,11 @@
 import Head from 'next/head'
+import { useState } from 'react';
 import Image from 'next/image'
 import Link from 'next/link'
 import fs from 'fs';
 import matter from 'gray-matter';
 import md from 'markdown-it';
 import backArrow from '../../public/backArrow.png'
-import { useState } from 'react';
-
 
 export async function getStaticPaths() {
 	const files = fs.readdirSync('posts');
@@ -30,7 +29,7 @@ export async function getStaticPaths() {
 	};
 }
 
-export async function getStaticProps ({ params: { slug }}) {
+export async function getStaticProps ({ params: { slug } }) {
 	const files = fs.readdirSync('posts')
   const posts = files.map((fileName) => {
     const slug = fileName.replace('.md', '');

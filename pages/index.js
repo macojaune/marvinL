@@ -21,14 +21,26 @@ export async function getStaticProps() {
       };
   });
 
+  const projectFiles = fs.readdirSync('projects')
+  const projects = projectFiles.map((fileName) => {
+    const slug = fileName.replace('.md', '');
+    const readFile = fs.readFileSync(`projects/${fileName}`, 'utf-8');
+    const { data: frontmatter } = matter(readFile);
+      return {
+        slug,
+        frontmatter,
+      };
+  });
+
   return {
     props: {
       posts,
+      projects,
     },
   };
 }
 
-export default function Home({ posts }) {
+export default function Home({ posts, projects }) {
   return (
     <>
       <main id="home" className="m-h-screen m-w-full pt-12 md:px-0">
@@ -99,7 +111,7 @@ export default function Home({ posts }) {
           </div>
         </div>
         <div id="projects">
-          <ProjectsSlider slides={ProjectsData}/>
+          <ProjectsSlider projects={projects}/>
         </div>
         <div id="articles" className="flex flex-col justify-center h-60 py-7 px-1 overflow-hidden bg-washed-white">
           <div className="text-salmon px-6 text-4xl font-semibold">J'ai écrit...</div>

@@ -5,9 +5,9 @@ import { ProjectsData } from './ProjectsData'
 import leftArrow from '../public/leftArrow.png'
 import rightArrow from '../public/rightArrow.png'
 
-const ProjectsSlider = ( {slides} ) => {
+const ProjectsSlider = ( {projects} ) => {
   const [current, setCurrent] = useState(0)
-  const length = slides.length
+  const length = projects.length
 
   const nextSlide = () => {
     setCurrent(current === length -1 ? 0 : current + 1)
@@ -17,24 +17,24 @@ const ProjectsSlider = ( {slides} ) => {
     setCurrent(current === 0 ? length - 1 : current - 1 )
   }
 
-  if(!Array.isArray(slides) || slides.length <= 0) {
+  if(!Array.isArray(projects) || projects.length <= 0) {
     return null
   }
 
   return (
     <>
-    {ProjectsData.map((project,index) => {
+    {projects.map(({slug, frontmatter},index) => {
       return (
-        <div key={project.url} className={index === current ? 'inline' : 'hidden'}>
+        <div key={slug} className={index === current ? 'inline' : 'hidden'}>
           <div className="mt-4 flex h-screen flex-col">
             <div className="flex flex-col h-1/4 md:w-full md:order-last justify-between bg-dark-cyan p-5 px-5">
               <div className="md:mx-96">
                 <div className=" text-xl">J'ai bétonné</div>
                 <div className="text-5xl font-semibold">
-                  {project.url}<small className="font-light">.fr</small>
+                  {slug}<small className="font-light">.fr</small>
                 </div>
                 <div className="hidden md:flex md:flex-row md:justify-end">
-                  <Link href={"/projects/" + project.url} className="">
+                  <Link href={"/project/" + slug} className="">
                     <a>-> Détails</a>
                   </Link>
                 </div>
@@ -77,7 +77,7 @@ const ProjectsSlider = ( {slides} ) => {
                 {index === current && (
                   <div className="w-11/12 md:hidden">
                     <Image
-                      src={require('../public/' + project.imageMobile)}
+                      src={require('../public/' + frontmatter.imageMobile)}
                       alt=""
                       height="207"
                       width="119"
@@ -90,7 +90,7 @@ const ProjectsSlider = ( {slides} ) => {
                 {index === current && (
                   <div className="hidden md:block md:w-11/12">
                     <Image
-                      src={require('../public/' + project.image)}
+                      src={require('../public/' + frontmatter.image)}
                       alt=""
                       height="347"
                       width="525"
@@ -101,10 +101,10 @@ const ProjectsSlider = ( {slides} ) => {
                 )}
               </div>
               <div className="flex flex-col w-1/2 items-start justify-end md:justify-center md:order-first">
-                <h2 className="text-3xl">{project.title}</h2>
-                <p className="text-sm my-2">{project.tech}</p>
+                <h2 className="text-3xl">{frontmatter.title}</h2>
+                <p className="text-sm my-2">{frontmatter.tech}</p>
                 <div className="text-right w-full md:hidden">
-                  <Link href={"/projects/" + project.url} className="">
+                  <Link href={"/project/" + slug} className="">
                     <a className="text-xl">-> Détails</a>
                   </Link>
                 </div>
