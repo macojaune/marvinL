@@ -47,23 +47,20 @@ export default function ProjectPage({ frontmatter, content, next, prev }) {
   const skipDiv = useRef(null)
   const article = useRef(null)
 
-  const [lastPos, setPos] = useState()
-  const posRef = useRef(lastPos)
+  const posRef = useRef()
 
   const handleScroll = () => {
-    const articleHeight = article.current.scrollHeight
-    const skipDivHeight = skipDiv.current.scrollHeight
+    const articleHeight = article?.current?.scrollHeight
+    const skipDivHeight = skipDiv?.current?.scrollHeight
     const skipCap = skipDivHeight / 1.15
     const position = window.scrollY
 
     //redirect only on scroll down (not initial scroll up)
     if (posRef.current < position && position >= articleHeight - skipCap) {
-      console.log('Niveau atteint: redirection', next)
       if (next) router.push('./' + next)
     }
     //update scroll lastPosition
     posRef.current = position
-    setPos(position)
   }
 
   useEffect(() => {
