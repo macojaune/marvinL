@@ -1,13 +1,14 @@
-import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import fs from 'fs';
 import matter from 'gray-matter';
 import TextSlider from '../components/TextSlider'
-import { ProjectsData } from '../components/ProjectsData.js'
+import { ProjectsData } from '../components/ProjectsData'
 import ProjectsSlider from '../components/ProjectsSlider'
 import ArticlesSlider from '../components/ArticlesSlider'
+import ContactForm from '../components/ContactForm.js'
 import builderImg from '../public/builder.png'
+import { motion } from "framer-motion"
 
 export async function getStaticProps() {
   const files = fs.readdirSync('posts')
@@ -21,25 +22,43 @@ export async function getStaticProps() {
       };
   });
 
+  const projectFiles = fs.readdirSync('projects')
+  const projects = projectFiles.map((fileName) => {
+    const slug = fileName.replace('.md', '');
+    const readFile = fs.readFileSync(`projects/${fileName}`, 'utf-8');
+    const { data: frontmatter } = matter(readFile);
+      return {
+        slug,
+        frontmatter,
+      };
+  });
+
   return {
     props: {
       posts,
+      projects,
     },
   };
 }
 
-export default function Home({ posts }) {
+export default function Home({ posts, projects }) {
+  const variants = {
+    hidden: { opacity: 0, x: 0, y: 200 },
+    enter: { opacity: 1, x: 0, y: 0 },
+    exit: { opacity: 0, x: 0, y: 100 },
+  }
   return (
-    <>
-      <Head>
-        <title>MarvinL.com</title>
-        <meta name="description" content="Le maçon du web efficace" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta charSet="utf-8" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className="m-h-screen m-w-full pt-12 md:px-0">
+      <motion.main 
+        variants={variants} 
+        initial={"hidden"}
+        animate={"enter"}
+        exit={"exit"} 
+        transition={{ type: 'linear' }}
+        id="home" className="m-h-screen m-w-full pt-12 md:px-0"
+      >
+        <Link href='random'>
+          <a>Page random</a>
+        </Link>
         <div className="flex flex-col items-center justify-center px-5">
           <h1 className="text-left">
             <span className="font-mono text-base leading-tight">
@@ -53,7 +72,6 @@ export default function Home({ posts }) {
               , le maçon du web efficace
             </small>
           </h1>
-
           <p className="my-6 text-justify text-lg italic leading-snug md:text-left md:text-xl md:leading-tight">
             Si les fondations sont vos idées, <br className="md:hidden" /> je
             m’occupe des murs qui vont mettre{' '}
@@ -107,16 +125,16 @@ export default function Home({ posts }) {
             </p>
           </div>
         </div>
-        <ProjectsSlider slides={ProjectsData}/>
-        <ArticlesSlider posts={posts}/>
-        <div className="flex flex-col half-screen bg-salmon justify-center items-center p-20">
-          {/* <Link href="contact.js"> */}
-            <a>
-              <h2 className="text-8xl">Me contacter ?</h2>
-            </a>
-          {/* </Link> */}
+        <div id="projects">
+          <ProjectsSlider projects={projects}/>
         </div>
-      </main>
-    </>
+        <div id="articles" className="flex flex-col justify-center h-60 py-7 px-1 overflow-hidden bg-washed-white">
+          <div className="text-salmon px-6 text-4xl font-semibold">J'ai écrit...</div>
+          <ArticlesSlider posts={posts}/>
+        </div>
+        <div id="contact" className="flex flex-col h-screen justify-center items-center p-20">
+          <ContactForm />
+        </div>
+      </motion.main>
   )
 }
